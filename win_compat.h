@@ -48,11 +48,13 @@ int wsa_errno();
 const char* wsa_strerror(int errcode);
 int win_select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval * const timeout);
 
+#ifndef __MINGW32__
 // only support fcntl(fd, F_SETFL, O_NONBLOCK)
 #define F_SETFL 0
 #define O_NONBLOCK 0
 int fcntl(SOCKET fd, int cmd, int value);
 const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
+#endif
 
 typedef u_short sa_family_t;
 

@@ -124,6 +124,7 @@ win_setsockopt(SOCKET sockfd, int level, int optname, const void *optval, sockle
 	}
 }
 
+#ifndef __MINGW32__
 int
 fcntl(SOCKET fd, int cmd, int value) {
 	unsigned long on = 1;
@@ -223,6 +224,7 @@ inet_ntop(int af, const void *src, char *dst,  socklen_t size) {
 		return NULL;
 	}
 }
+#endif
 
 void
 init_socketlib(lua_State *L) {
